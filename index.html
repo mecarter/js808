@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>js808</title>
+    <link href="js808.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <h1>js808</h1>
+    <div id="drum-machine">
+        <input type="range" value="120" min="60" max="200" id="tempo" />
+        <div id="drums">
+            <div class="drum active" id="BD">
+                BD
+                <input type="range" class="vol" name="vol" min="0" max="4">
+                <input type="range" class="knob1" name="knob1" min="0" max="4" value="0">
+                <input type="range" class="knob2" name="knob2" min="0" max="4" value="0">
+            </div>
+            <div class="drum" id="SD">
+                SD
+                <input type="range" class="vol" name="vol" min="0" max="4">
+                <input type="range" class="knob1" name="knob1" min="0" max="4" value="0">
+                <input type="range" class="knob2" name="knob2" min="0" max="4" value="0">
+            </div>
+            <div class="drum" id="CY">
+                CY
+                <input type="range" class="vol" name="vol" min="0" max="4">
+                <input type="range" class="knob1" name="knob1" min="0" max="4" value="0">
+                <input type="range" class="knob2" name="knob2" min="0" max="4" value="0">
+            </div>
+            <div class="drum" id="HC">
+                HC
+                <input type="range" class="vol" name="vol" min="0" max="4">
+                <input type="range" class="knob1" name="knob1" min="0" max="4" value="0">
+            </div>
+            <div class="drum" id="LC">
+                LC
+                <input type="range" class="vol" name="vol" min="0" max="4">
+                <input type="range" class="knob1" name="knob1" min="0" max="4" value="0">
+            </div>
+            <div class="drum" id="HT">
+                HT
+                <input type="range" class="vol" name="vol" min="0" max="4">
+                <input type="range" class="knob1" name="knob1" min="0" max="4" value="0">
+            </div>
+            <div class="drum" id="LT">
+                LT
+                <input type="range" class="vol" name="vol" min="0" max="4">
+                <input type="range" class="knob1" name="knob1" min="0" max="4" value="0">
+            </div>
+            <div class="drum" id="CP">CP</div>
+            <div class="drum" id="CB">CB</div>
+            <div class="drum" id="CH">CH</div>
+        </div>
+        <div id="sequencer">
+            <button id="pos1">&#9679;</button>
+            <button id="pos2">&#9679;</button>
+            <button id="pos3">&#9679;</button>
+            <button id="pos4">&#9679;</button>
+            <button id="pos5">&#9679;</button>
+            <button id="pos6">&#9679;</button>
+            <button id="pos7">&#9679;</button>
+            <button id="pos8">&#9679;</button>
+            <button id="pos9">&#9679;</button>
+            <button id="pos10">&#9679;</button>
+            <button id="pos11">&#9679;</button>
+            <button id="pos12">&#9679;</button>
+            <button id="pos13">&#9679;</button>
+            <button id="pos14">&#9679;</button>
+            <button id="pos15">&#9679;</button>
+            <button id="pos16">&#9679;</button>
+        </div>
+        <div id="controls">
+            <button id="play"><span>START</span><span>STOP</span></button>
+        </div>
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+    <script src="js808.js"></script>
+</body>
+</html>

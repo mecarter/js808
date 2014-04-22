@@ -1,0 +1,32 @@
+#drum-machine {
+    background: #333;
+    color: white;
+}
+
+.drum.active {
+    background: #555;
+}
+
+#sequencer button {
+    display: inline-block;
+    border: none;
+    background: red;
+    color: black;
+}
+
+#sequencer button:nth-child(n+5) {
+    background: orange;
+}
+
+#sequencer button:nth-child(n+9) {
+    background: yellow;
+}
+
+#sequencer button:nth-child(n+13) {
+    background: lightyellow;
+}
+
+#sequencer button.active {
+    color: pink;
+    text-shadow: 0 0 5px #f44;
+}
