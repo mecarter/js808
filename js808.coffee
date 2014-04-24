@@ -66,8 +66,6 @@ Drum = Backbone.Model.extend(
         knob2 = processVal(@get "knob2")
         knobsVal = "#{ knob1 }#{ knob2 }"
 
-        console.log knobsVal
-
         @$audio.attr "src", "samples/#{@id}#{ knobsVal }.mp3"
 
     onBeat: (e, beat) ->
@@ -136,12 +134,16 @@ DrumMachine = Backbone.View.extend(
         return
 
     drumActiveToggle: (e) ->
-        drumId = $(e.target).attr("id")
+        e.preventDefault()
+
+        $drum = $(e.target).closest ".drum"
+        return if $drum.hasClass "active"
+        drumId = $drum.attr("id")
 
         @drums.each (drum) ->
             drum.trigger "change:isactive", drumId
 
-        e.preventDefault()
+        return
 
     sequencerToggle: (e) ->
         $toggle = $(e.target)
