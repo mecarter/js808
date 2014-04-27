@@ -30,7 +30,7 @@ $(function() {
       }
     },
     changeTempo: function(bpm) {
-      this.set('bpm', 60000 / bpm / 4); // this.bpm = bpm in ms
+      this.set('bpm', 60000 / bpm / 4); // this.get('bpm') = bpm in ms
     }
   });
   
@@ -42,15 +42,15 @@ $(function() {
       
       this.set('active', this.el.hasClass('active'));
 
-      this.$audio.attr('src', this.get('file'));
-
       this.on('change:knob1 change:knob2', this.setFile);
+      this.on('change:vol', this.setVol);
       this.on('change:isactive', this.onActiveToggle);
       this.on('change:step', this.onStepChange);
 
       $window.on('beat', _.bind(this.onBeat, this));
-
+      
       this.setFile();
+      this.setVol();
     },
     setFile: function() {
       var processVal = function(val) {
@@ -83,9 +83,12 @@ $(function() {
 
       this.$audio.attr('src', 'samples/' + this.id + knobsVal + '.mp3');
     },
+    setVol: function() {
+      this.$audio[0].volume = this.get('vol') / 10;
+    },
     onBeat: function(e, beat) {
       if ($.inArray(beat, this.beats) >= 0) {
-        if (this.$audio.readyState)
+        if (this.$audio[0].readyState)
           this.$audio[0].currentTime = 0;
         this.$audio[0].play();
       }
@@ -141,13 +144,14 @@ $(function() {
     },
     createDrum: function(i, el) {
       var $drum = $(el);
+      var $vol = $drum.find('.vol');
       var $knob1 = $drum.find('.knob1');
       var $knob2 = $drum.find('.knob2');
 
       this.drums.push([{
         el: $drum,
         id: $drum.attr('id'),
-        vol: $drum.find('.vol'),
+        vol: +$vol.val(),
         knob1: +$knob1.val(),
         knob2: +$knob2.val()
       }]);
