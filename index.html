@@ -1,90 +1,146 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>js808</title>
-    <link href="js808.css" type="text/css" rel="stylesheet">
+  <title>js808</title>
+  <link href="css/js808.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <h1>js808</h1>
-    <div id="drum-machine">
-        <input type="range" value="120" min="60" max="200" id="tempo" />
-        <div id="drums">
-            <div class="drum active" id="BD">
-                BD
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-                <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
-                <input type="range" class="knob2" name="knob2" min="0" max="4" value="2">
-            </div>
-            <div class="drum" id="SD">
-                SD
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-                <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
-                <input type="range" class="knob2" name="knob2" min="0" max="4" value="2">
-            </div>
-            <div class="drum" id="CY">
-                CY
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-                <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
-                <input type="range" class="knob2" name="knob2" min="0" max="4" value="2">
-            </div>
-            <div class="drum" id="HC">
-                HC
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-                <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
-            </div>
-            <div class="drum" id="LC">
-                LC
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-                <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
-            </div>
-            <div class="drum" id="HT">
-                HT
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-                <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
-            </div>
-            <div class="drum" id="LT">
-                LT
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-                <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
-            </div>
-            <div class="drum" id="CP">
-                CP
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-            </div>
-            <div class="drum" id="CB">
-                CB
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-            </div>
-            <div class="drum" id="CH">
-                CH
-                <input type="range" class="vol" name="vol" min="0" max="10" value="8">
-            </div>
-        </div>
-        <div id="sequencer">
-            <button id="pos1">&#9679;</button>
-            <button id="pos2">&#9679;</button>
-            <button id="pos3">&#9679;</button>
-            <button id="pos4">&#9679;</button>
-            <button id="pos5">&#9679;</button>
-            <button id="pos6">&#9679;</button>
-            <button id="pos7">&#9679;</button>
-            <button id="pos8">&#9679;</button>
-            <button id="pos9">&#9679;</button>
-            <button id="pos10">&#9679;</button>
-            <button id="pos11">&#9679;</button>
-            <button id="pos12">&#9679;</button>
-            <button id="pos13">&#9679;</button>
-            <button id="pos14">&#9679;</button>
-            <button id="pos15">&#9679;</button>
-            <button id="pos16">&#9679;</button>
-        </div>
-        <div id="controls">
-            <button id="play"><span>START</span><span>STOP</span></button>
-        </div>
+  <div id="drum-machine">
+    <div id="drum-machine-top">
+      <div></div>
+      <div></div>
     </div>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
-    <script src="js808.js"></script>
+    <input type="range" value="120" min="60" max="200" id="tempo" />
+    <label for="tempo">Tempo</label>
+    <div id="drums">
+      <div class="drum-grouping">
+        <div class="drum active" id="BD">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+          <input type="range" class="knob2" name="knob2" min="0" max="4" value="2">
+        </div>
+        <h2><span>B</span>ass<span>D</span>rum</h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum" id="SD">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+          <input type="range" class="knob2" name="knob2" min="0" max="4" value="2">
+        </div>
+        <h2><span>S</span>nare<span>D</span>rum</h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum first" id="LC">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+        </div>
+        <div class="drum last" id="LT">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+        </div>
+        <h2><span>L</span>ow<span>C</span>onga</h2>
+        <button class="drum-grouping-toggle"></button>
+        <h2><span>L</span>ow<span>T</span>om</h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum first" id="MC">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+        </div>
+        <div class="drum last" id="MT">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+        </div>
+        <h2><span>M</span>id<span>C</span>onga</h2>
+        <button class="drum-grouping-toggle"></button>
+        <h2><span>M</span>id<span>T</span>om</h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum first" id="HC">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+        </div>
+        <div class="drum last" id="HT">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+        </div>
+        <h2><span>H</span>i<span>C</span>onga</h2>
+        <button class="drum-grouping-toggle"></button>
+        <h2><span>H</span>i<span>T</span>om</h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum first" id="CL">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+        </div>
+        <div class="drum last" id="RS">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+        </div>
+        <h2><span>CL</span>aves</h2>
+        <button class="drum-grouping-toggle"></button>
+        <h2><span>R</span>im<span>S</span>hot</h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum first" id="MA">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+        </div>
+        <div class="drum last" id="CP">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+        </div>
+        <h2><span>MA</span>racas</h2>
+        <button class="drum-grouping-toggle"></button>
+        <h2>hand<span>C</span>la<span>P</span></h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum" id="CB">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+        </div>
+        <h2><span>C</span>ow<span>B</span>ell</h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum" id="CY">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+          <input type="range" class="knob2" name="knob2" min="0" max="4" value="2">
+        </div>
+        <h2><span>CY</span>mybal</h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum" id="OH">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+          <input type="range" class="knob1" name="knob1" min="0" max="4" value="2">
+        </div>
+        <h2><span>O</span>pen<span>H</span>ihat</h2>
+      </div>
+      <div class="drum-grouping">
+        <div class="drum" id="CH">
+          <input type="range" class="vol" name="vol" min="0" max="10" value="8">
+        </div>
+        <h2><span>C</span>ls'd<span>H</span>ihat</h2>
+      </div>
+    </div>
+    <button id="play"><span>START</span><span>STOP</span></button>
+    <div id="sequencer">
+      <button id="pos1">&#9679;</button>
+      <button id="pos2">&#9679;</button>
+      <button id="pos3">&#9679;</button>
+      <button id="pos4">&#9679;</button>
+      <button id="pos5">&#9679;</button>
+      <button id="pos6">&#9679;</button>
+      <button id="pos7">&#9679;</button>
+      <button id="pos8">&#9679;</button>
+      <button id="pos9">&#9679;</button>
+      <button id="pos10">&#9679;</button>
+      <button id="pos11">&#9679;</button>
+      <button id="pos12">&#9679;</button>
+      <button id="pos13">&#9679;</button>
+      <button id="pos14">&#9679;</button>
+      <button id="pos15">&#9679;</button>
+      <button id="pos16">&#9679;</button>
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+  <script src="js808.js"></script>
 </body>
 </html>

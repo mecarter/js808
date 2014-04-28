@@ -1,0 +1,122 @@
+@import "compass/css3";
+
+body {
+  background: white;
+  font: 14px/21px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#drum-machine {
+  width: 80%;
+  background: #333;
+  color: white;
+  margin: 0 auto;
+  border-left: 50px solid #111;
+  border-right: 50px solid #111;
+/*   @include transform(perspective(1000px) rotateX(2deg)); */
+}
+
+#drum-machine-top {
+  position: relative;
+  background: #444;
+  height: 20px;
+  
+  div {
+    position: absolute;
+    left: -50px;
+    bottom: 0;
+    height: 22px;
+    width: 50px;
+    background: #222;
+    
+    &:last-child {
+      left: auto;
+      right: -50px;
+    }
+  }
+}
+
+.drum-grouping {
+  position: relative;
+  float: left;
+  width: 8.8%;
+  height: 300px;
+  border-right: 1px solid #888;
+  
+  h2 {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: normal;
+    background: lightyellow;
+    color: #111;
+    @include border-radius(3px);
+    @include box-sizing(border-box);
+    
+    span {
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+  
+  input[type="range"] {
+    width: 100%;
+  }
+  
+  &:last-child {
+    border-right: none;
+  }
+  
+  .drum {
+    &.first {
+      display: none;
+    }
+  }
+  
+  &.toggled {
+    .drum {
+      &.first {
+        display: block;
+      }
+      
+      &.last {
+        display: none;
+      }
+    }
+  }
+}
+
+.drum {
+  .active {
+      background: #555;
+  }
+}
+
+#play {
+  clear: both;
+  float: left;
+}
+
+#sequencer {
+  button {
+    display: inline-block;
+    border: none;
+    background: red;
+    color: black;
+    
+    &:nth-child(n+5) {
+      background: orange;
+    }
+    
+    &:nth-child(n+9) {
+      background: yellow;
+    }
+    
+    &:nth-child(n+13) {
+      background: lightyellow;
+    }
+    
+    &.active {
+      color: pink;
+      text-shadow: 0 0 5px #f44;
+    }
+  }
+}

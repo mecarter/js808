@@ -129,8 +129,9 @@ $(function() {
     events: {
       'change #tempo': 'changeTempo',
       'click .drum': 'drumActiveToggle',
-      'click #controls button': 'togglePlay',
+      'click #play': 'togglePlay',
       'click #sequencer button': 'sequencerToggle',
+      'click .drum-grouping-toggle': 'groupingToggle',
       'change input[type=range]': 'moveKnob'
     },
     initialize: function() {
@@ -162,7 +163,7 @@ $(function() {
     drumActiveToggle: function(e) {
       e.preventDefault()
 
-      var $drum = $(e.target).closest ('.drum');
+      var $drum = $(e.target).closest('.drum');
       if ($drum.hasClass('active')) return;
       
       var drumId = $drum.attr('id');
@@ -184,15 +185,21 @@ $(function() {
         activeDrum.trigger('change:step', step);
       }
     },
+    groupingToggle: function(e) {
+      e.preventDefault();
+      
+      var $grouping = $(e.target).parent('.drum-grouping');
+      $grouping.toggleClass('toggled');
+    },
     moveKnob: function(e) {
       e.preventDefault();
       
       var $knob = $(e.target);
-      var activeDrum = this.drums.where({ active: true })[0];
+      if ($knob.is('#tempo')) return;
+      var drumId = $knob.parent('.drum').attr('id');
+      var drum = this.drums.where({ id: drumId })[0];
 
-      if (activeDrum) {
-        activeDrum.set($knob.attr('name'), +$knob.val());
-      }
+      drum.set($knob.attr('name'), +$knob.val());
     }
   });
   
