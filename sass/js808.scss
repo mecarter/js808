@@ -1,3 +1,4 @@
+@import "compass/utilities/general/clearfix";
 @import "compass/css3";
 
 body {
@@ -6,13 +7,14 @@ body {
 }
 
 #drum-machine {
-  width: 80%;
+  width: 1200px;
   background: #333;
   color: white;
   margin: 0 auto;
   border-left: 50px solid #111;
   border-right: 50px solid #111;
 /*   @include transform(perspective(1000px) rotateX(2deg)); */
+  @include clearfix;
 }
 
 #drum-machine-top {
@@ -38,7 +40,7 @@ body {
 .drum-grouping {
   position: relative;
   float: left;
-  width: 8.8%;
+  width: 100px;
   height: 300px;
   border-right: 1px solid #888;
   
@@ -93,14 +95,37 @@ body {
 #play {
   clear: both;
   float: left;
+  width: 100px;
+  background: lightyellow;
+  border: 5px solid desaturate(darken(lightyellow, 25%), 10%);
+  margin-right: 20px;
+  cursor: pointer;
+  
+  span {
+    display: block;
+    
+    &:first-child {
+      border-bottom: 1px solid #666;
+    }
+  }
+  
+  &.playing {
+    background: lighten(lightyellow, 10%);
+    border: 5px solid desaturate(darken(lightyellow, 15%), 10%);
+  }
 }
 
 #sequencer {
+  width: 1100px;
+  
   button {
     display: inline-block;
     border: none;
     background: red;
     color: black;
+    width: 50px;
+    height: 80px;
+    font-size: 36px;
     
     &:nth-child(n+5) {
       background: orange;

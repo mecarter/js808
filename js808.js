@@ -157,7 +157,8 @@ $(function() {
         knob2: +$knob2.val()
       }]);
     },
-    togglePlay: function() {
+    togglePlay: function(e) {
+      $(e.target).closest('#play').toggleClass('playing');
       this.tempo.trigger('change:playing');
     },
     drumActiveToggle: function(e) {
