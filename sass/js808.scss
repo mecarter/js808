@@ -68,16 +68,8 @@ body {
     border-right: none;
   }
   
-  &.toggled {
-    .drum {
-      &.first {
-        display: block;
-      }
-      
-      &.last {
-        display: none;
-      }
-    }
+  &.active {
+    background: #444;
   }
 }
 

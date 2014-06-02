@@ -76,16 +76,12 @@ body {
 .drum:last-child {
   border-right: none;
 }
-/* line 73, ../sass/js808.scss */
-.drum.toggled .drum.first {
-  display: block;
-}
-/* line 77, ../sass/js808.scss */
-.drum.toggled .drum.last {
-  display: none;
+/* line 71, ../sass/js808.scss */
+.drum.active {
+  background: #444;
 }
 
-/* line 84, ../sass/js808.scss */
+/* line 76, ../sass/js808.scss */
 #play {
   clear: both;
   float: left;
@@ -95,25 +91,25 @@ body {
   margin-right: 20px;
   cursor: pointer;
 }
-/* line 93, ../sass/js808.scss */
+/* line 85, ../sass/js808.scss */
 #play span {
   display: block;
 }
-/* line 96, ../sass/js808.scss */
+/* line 88, ../sass/js808.scss */
 #play span:first-child {
   border-bottom: 1px solid #666;
 }
-/* line 101, ../sass/js808.scss */
+/* line 93, ../sass/js808.scss */
 #play.playing {
   background: white;
   border: 5px solid #fafa99;
 }
 
-/* line 107, ../sass/js808.scss */
+/* line 99, ../sass/js808.scss */
 #sequencer {
   width: 1100px;
 }
-/* line 110, ../sass/js808.scss */
+/* line 102, ../sass/js808.scss */
 #sequencer button {
   display: inline-block;
   border: none;
@@ -123,19 +119,19 @@ body {
   height: 80px;
   font-size: 36px;
 }
-/* line 119, ../sass/js808.scss */
+/* line 111, ../sass/js808.scss */
 #sequencer button:nth-child(n+5) {
   background: orange;
 }
-/* line 123, ../sass/js808.scss */
+/* line 115, ../sass/js808.scss */
 #sequencer button:nth-child(n+9) {
   background: yellow;
 }
-/* line 127, ../sass/js808.scss */
+/* line 119, ../sass/js808.scss */
 #sequencer button:nth-child(n+13) {
   background: lightyellow;
 }
-/* line 131, ../sass/js808.scss */
+/* line 123, ../sass/js808.scss */
 #sequencer button.active {
   color: pink;
   text-shadow: 0 0 5px #f44;

@@ -1,56 +1,43 @@
-// JS808
 $(function() {
-  var $window = $(window)
+  
+  var $window = $(window);
   
   var Tempo = Backbone.Model.extend({
-    initialize: function() {
-      this.playing = 0;
-      
-      this.on('change:playing', _.bind(this.togglePlay, this));
-      this.on('change:tempo', _.bind(this.changeTempo, this));
-
-      this.changeTempo(120);
+    initialize: function() {      
+      this.on('change:playing', this.togglePlay);
+      this.on('change:tempo', this.changeTempo);
     },
     togglePlay: function() {
-      var that = this;
-      var tempoCounter = function() { 
+      var _this = this;
+      var tempoCounter = function() {
         setTimeout(function() {
-          $window.trigger('beat', that.beat || 0);
-          that.beat++
-          if (that.beat === 16) that.beat = 0;
-          if (that.playing) tempoCounter();
-        }, that.get('bpm'))
+          $window.trigger('beat', _this.beat || 0);
+          _this.beat++
+          if (_this.beat === 16) _this.beat = 0;
+          if (_this.get('playing')) tempoCounter();
+        }, _this.get('bpm'))
       };
 
-      this.playing = !this.playing;
-
-      if (this.playing) {
+      if (this.get('playing')) {
         this.beat = 0;
         tempoCounter();
       }
     },
-    changeTempo: function(bpm) {
-      this.set('bpm', 60000 / bpm / 4); // this.get('bpm') = bpm in ms
+    changeTempo: function() {
+      this.set('bpm', 60000 / this.get('tempo') / 4); // this.get('bpm') = bpm in ms
     }
   });
   
-  var Drum = Backbone.Model.extend({
-    initialize: function(data) {
-      this.el = data.el;
-      this.beats = [];
+  var DrumModel = Backbone.Model.extend({
+    initialize: function() {
+      this.set('beats', []);
       this.$audio = $('<audio />');
       
-      this.set('active', this.el.hasClass('active'));
-
-      this.on('change:knob1 change:knob2', this.setFile);
+      this.on('change:knob1 change:knob2 change:useAlt', this.setFile);
       this.on('change:vol', this.setVol);
-      this.on('change:isactive', this.onActiveToggle);
-      this.on('change:step', this.onStepChange);
-
-      $window.on('beat', _.bind(this.onBeat, this));
+      this.on('change:beat', this.changeBeat);
       
-      this.setFile();
-      this.setVol();
+      $window.on('beat', _.bind(this.onBeat, this));
     },
     setFile: function() {
       var processVal = function(val) {
@@ -80,130 +67,132 @@ $(function() {
       var knob1 = processVal(this.get('knob1'));
       var knob2 = processVal(this.get('knob2'));
       var knobsVal = '' + knob1 + knob2;
-
-      this.$audio.attr('src', 'samples/' + this.id + knobsVal + '.mp3');
+      var whichId = this.get('useAlt') ? 'drumAltId' : 'drumId';
+      var fileName = 'samples/' + this.get(whichId) + knobsVal + '.mp3';
+      
+      console.log(fileName);
+      
+      this.$audio.attr('src', fileName);
     },
-    setVol: function() {
-      this.$audio[0].volume = this.get('vol') / 10;
+    changeBeat: function(beat) {
+      var oldBeats = this.get('beats')
+      if ($.inArray(beat, oldBeats) >= 0) {
+        this.set('beats', _.without(oldBeats, beat));
+      }
+      else {
+        this.set('beats', oldBeats.concat(beat));
+      }
+      
+      console.log(this.get('beats'));
     },
     onBeat: function(e, beat) {
-      if ($.inArray(beat, this.beats) >= 0) {
+      if ($.inArray(beat, this.get('beats')) >= 0) {
         if (this.$audio[0].readyState)
           this.$audio[0].currentTime = 0;
         this.$audio[0].play();
       }
-    },
-    onActiveToggle: function(drumId) {
-      var isActive = this.get('active');
-
-      if (isActive || drumId === this.id) {
-        this.el.toggleClass('active', !isActive);
-        this.set('active', !isActive);
-      }
-
-      if (drumId === this.id)
-        this.setupBeats();
-    },
-    onStepChange: function(step) {
-      if ($.inArray(step, this.beats) >= 0) {
-        this.beats = _.without(this.beats, step);
-      }
-      else {
-        this.beats.push(step);
-      }
-    },
-    setupBeats: function() {
-      $('#sequencer button').each(_.bind(function(i, e) {
-        var beatIsActive = $.inArray(i, this.beats) >= 0
-        $(e).toggleClass('active', beatIsActive);
-      }, this));
     }
   });
   
   var Drums = Backbone.Collection.extend({
-    model: Drum
+    model: DrumModel
+  });
+  
+  var Drum = Backbone.View.extend({
+    events: {
+      'change .knob1': 'changeKnob',
+      'change .knob2': 'changeKnob',
+      'click .drum-toggle': 'changeDrum'
+    },
+    initialize: function() {
+      this.$el = $('#' + this.model.get('id'));
+      this.$knob1 = this.$('.knob1');
+      this.$knob2 = this.$('.knob2');
+      
+      this.model.set('knob1', +this.$knob1.val());
+      this.model.set('knob2', +this.$knob2.val());
+      
+      this.listenTo(this.model, 'change:active', this.toggleActive);
+    },
+    changeDrum: function() {
+      this.$el.toggleClass('use-alt');
+      this.model.set('useAlt', !this.model.get('useAlt'));
+    },
+    changeKnob: function(e) {
+      var $knob = $(e.target);
+      this.model.set($knob.attr('class'), +$knob.val());
+    },
+    toggleActive: function(drumId) {
+      this.$el.toggleClass('active');
+    },
   });
   
   var DrumMachine = Backbone.View.extend({
     el: $('#drum-machine'),
     events: {
-      'change #tempo': 'changeTempo',
-      'click .drum': 'drumActiveToggle',
       'click #play': 'togglePlay',
-      'click #sequencer button': 'sequencerToggle',
-      'click .drum-grouping-toggle': 'groupingToggle',
-      'change input[type=range]': 'moveKnob'
+      'change #tempo': 'changeTempo',
+      'click .drum': 'changeActive',
+      'click #sequencer button': 'sequencerToggle'
     },
     initialize: function() {
       this.tempo = new Tempo();
       this.drums = new Drums();
-      this.$el.find('.drum').each(_.bind(this.createDrum, this));
-    },
-    changeTempo: function() {
-      var newBpm = +this.$el.find('#tempo').val();
-      this.tempo.trigger('change:tempo', newBpm);
-    },
-    createDrum: function(i, el) {
-      var $drum = $(el);
-      var $vol = $drum.find('.vol');
-      var $knob1 = $drum.find('.knob1');
-      var $knob2 = $drum.find('.knob2');
-
-      this.drums.push([{
-        el: $drum,
-        id: $drum.attr('id'),
-        vol: +$vol.val(),
-        knob1: +$knob1.val(),
-        knob2: +$knob2.val()
-      }]);
+      this.$tempo = this.$('#tempo');
+      
+      this.listenTo(this.drums, 'add', this.addDrum);
+      
+      this.tempo.set('tempo', +this.$tempo.val());
+      this.$('.drum').each(_.bind(this.createDrum, this));
     },
     togglePlay: function(e) {
       $(e.target).closest('#play').toggleClass('playing');
-      this.tempo.trigger('change:playing');
+      this.tempo.set('playing', !this.tempo.get('playing'));
     },
-    drumActiveToggle: function(e) {
-      e.preventDefault()
-
-      var $drum = $(e.target).closest('.drum');
-      if ($drum.hasClass('active')) return;
+    changeTempo: function(e) {
+      this.tempo.set('tempo', +$(e.target).val());
+    },
+    addDrum: function(drum) {
+      var view = new Drum({ model: drum });
+    },
+    createDrum: function(k, drum) {
+      var fullId = $(drum).attr('id');
+      var splitId = fullId.split('_');
+      var drumId = splitId[0];
+      var drumAltId = splitId[1];
       
-      var drumId = $drum.attr('id');
-
-      this.drums.each(function(drum) {
-        drum.trigger('change:isactive', drumId);
-      });
+      this.drums.add([{
+        id: fullId,
+        drumId: drumId,
+        drumAltId: drumAltId
+      }]);
+    },
+    changeActive: function(e) {
+      var drumId = $(e.target).closest('.drum').attr('id');
+      var oldActiveDrum = this.drums.findWhere({ active: true });
+      var newActiveDrum = this.drums.get(drumId);
+      
+      if (oldActiveDrum)
+        oldActiveDrum.set('active', false);
+        
+      newActiveDrum.set('active', true);
+      
+      this.$('#sequencer button').each(_.bind(function(i, e) {
+        var beatIsActive = $.inArray(i, newActiveDrum.get('beats')) >= 0;
+        $(e).toggleClass('active', beatIsActive);
+      }, this));
     },
     sequencerToggle: function(e) {
-      e.preventDefault();
-      
       var $toggle = $(e.target);
-      var step = $toggle.index();
-      var isActive = $toggle.hasClass('active');
-      var activeDrum = this.drums.where({ active: true })[0];
-
+      var activeDrum = this.drums.findWhere({ active: true });
+      
       if (activeDrum) {
-        $toggle.toggleClass('active', !isActive);
-        activeDrum.trigger('change:step', step);
+        $toggle.toggleClass('active');
+        activeDrum.trigger('change:beat', $toggle.index());
       }
-    },
-    groupingToggle: function(e) {
-      e.preventDefault();
-      
-      var $grouping = $(e.target).parent('.drum-grouping');
-      $grouping.toggleClass('toggled');
-    },
-    moveKnob: function(e) {
-      e.preventDefault();
-      
-      var $knob = $(e.target);
-      if ($knob.is('#tempo')) return;
-      var drumId = $knob.parent('.drum').attr('id');
-      var drum = this.drums.where({ id: drumId })[0];
-
-      drum.set($knob.attr('name'), +$knob.val());
     }
   });
   
-  var drumMachine = new DrumMachine()
+  var drumMachine = new DrumMachine();
   
 });
