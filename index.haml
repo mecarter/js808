@@ -1,0 +1,44 @@
+!!! 5
+%html
+  %head
+    %title JS808
+    %link{:href => "css/js808.css", :type => "text/css", :rel => "stylesheet"}
+  %body
+    %h1 JS808
+    %div#drum-machine
+      %input#tempo{:type => "range", :value => "120", :min => "60", :max => "200"}
+      %label{:for => "tempo"} Tempo
+      %div#drums
+        - drums = {1 => {:id => ["BD"], :name => ["BassDrum"], :hasKnob1 => true, :hasKnob2 => true},
+          2 => {:id => ["SD"], :name => ["SnareDrum"], :hasKnob1 => true, :hasKnob2 => true},
+          3 => {:id => ["LC", "LT"], :name => ["LowConga", "LowTom"], :hasKnob1 => true, :hasKnob2 => false},
+          4 => {:id => ["MC", "MT"], :name => ["MidConga", "MidTom"], :hasKnob1 => true, :hasKnob2 => false},
+          5 => {:id => ["HC", "HT"], :name => ["HiConga", "HiTom"], :hasKnob1 => true, :hasKnob2 => false},
+          6 => {:id => ["CL", "RS"], :name => ["CLaves", "RimShot"], :hasKnob1 => false, :hasKnob2 => false},
+          7 => {:id => ["MA", "CP"], :name => ["MAracas", "ClaP"], :hasKnob1 => false, :hasKnob2 => false},
+          8 => {:id => ["CB"], :name => ["CowBell"], :hasKnob1 => false, :hasKnob2 => false},
+          9 => {:id => ["CY"], :name => ["CYmbal"], :hasKnob1 => true, :hasKnob2 => true},
+          10 => {:id => ["OH"], :name => ["OpenHihat"], :hasKnob1 => true, :hasKnob2 => false},
+          11 => {:id => ["CH"], :name => ["Cls'dHihat"], :hasKnob1 => false, :hasKnob2 => false}}
+        - drums.sort.each do |key, val|
+          %div.drum{:id => val[:id], :data => {:count => val[:id].count}}
+            %input.vol{:type => "range", :min => "0", :max => "10", :value => "8"}
+            - if val[:hasKnob1]
+              %input.knob1{:type => "range", :min => "0", :max => "4", :value => "2"}
+            - if val[:hasKnob2]
+              %input.knob2{:type => "range", :min => "0", :max => "4", :value => "2"}
+            - val[:name].each_with_index do |name, index|
+              - if index == 1
+                %button.drum-toggle Toggle Drum
+              %h2 #{name}
+        %button#play 
+          %span Start
+          %span Stop
+        %div#sequencer
+          - (1..16).each do |i|
+            %button{:data => {:pos => i}} &#9679;
+            
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"}
+    %script{:src => "js/js808.js"}

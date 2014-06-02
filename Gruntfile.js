@@ -1,10 +1,16 @@
 module.exports = function(grunt) {
-  // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     watch: {
-      files: ['sass/js808.scss'],
-      tasks: ['compass']
+      files: ['index.haml', 'sass/js808.scss'],
+      tasks: ['haml', 'compass']
+    },
+    haml: {
+      dist: {
+        files: {
+          'index.html': 'index.haml'
+        }
+      }
     },
     compass: {
       dist: {
@@ -16,12 +22,11 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-haml');
   grunt.loadNpmTasks('grunt-contrib-compass');
 
-  // Default task(s).
   grunt.registerTask('default', ['build']);
-  grunt.registerTask('build', ['compass']);
+  grunt.registerTask('build', ['haml', 'compass']);
   
 };
