@@ -70,8 +70,6 @@ $(function() {
       var whichId = this.get('useAlt') ? 'drumAltId' : 'drumId';
       var fileName = 'samples/' + this.get(whichId) + knobsVal + '.mp3';
       
-      console.log(fileName);
-      
       this.$audio.attr('src', fileName);
     },
     changeBeat: function(beat) {
@@ -82,8 +80,9 @@ $(function() {
       else {
         this.set('beats', oldBeats.concat(beat));
       }
-      
-      console.log(this.get('beats'));
+    },
+    setVol: function() {
+      this.$audio[0].volume = this.get('vol') / 10;
     },
     onBeat: function(e, beat) {
       if ($.inArray(beat, this.get('beats')) >= 0) {
@@ -102,6 +101,7 @@ $(function() {
     events: {
       'change .knob1': 'changeKnob',
       'change .knob2': 'changeKnob',
+      'change .vol': 'changeKnob',
       'click .drum-toggle': 'changeDrum'
     },
     initialize: function() {
