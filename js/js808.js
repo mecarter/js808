@@ -195,4 +195,48 @@ $(function() {
   
   var drumMachine = new DrumMachine();
   
+  
+  var RangeKnob = function(element) {
+    this.$element = $(element);
+    this.$rangeInput = this.$element.find('input[type="range"]');
+    this.$knob = this.$element.find('.range-knob');
+    this.minValue = this.$rangeInput.attr('min');
+    this.maxValue = this.$rangeInput.attr('max');
+    this.init();
+  };
+  
+  RangeKnob.prototype = {
+    init: function() {
+      this.rotateKnob(this.$rangeInput.val());
+      this.$rangeInput.on('mousedown', _.bind(this.mousedownHandler, this));
+      this.$rangeInput.on('mouseup', this.mouseupHandler);
+    },
+    mousedownHandler: function() {
+      var _this = this;
+      _this.$rangeInput.on('mousemove', function() {
+        _this.rotateKnob(_this.$rangeInput.val());
+      });
+    },
+    mouseupHandler: function() {
+      $(this).off('mousemove');
+    },
+    rotateKnob: function(rotation) {
+      var calculatedRotation = (((rotation - this.minValue) / (this.maxValue - this.minValue)) * 270) - 135;
+      this.$knob.css({
+        transform: 'rotate(' + calculatedRotation + 'deg)',
+        '-webkit-transform': 'rotate(' + calculatedRotation + 'deg)',
+        '-moz-transform': 'rotate(' + calculatedRotation + 'deg)',
+        '-ms-transform': 'rotate(' + calculatedRotation + 'deg)'
+      });
+    }
+  }
+  
+  $.fn.rangeKnob = function() {
+    this.each(function() {
+      new RangeKnob(this);
+    });
+  }
+
+  $('.range-knob-wrapper').rangeKnob();
+  
 });

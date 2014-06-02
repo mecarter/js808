@@ -5,97 +5,192 @@
     <link href='css/js808.css' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <h1>JS808</h1>
     <div id='drum-machine'>
-      <input id='tempo' max='200' min='60' type='range' value='120'>
-      <label for='tempo'>Tempo</label>
       <div id='drums'>
+        <div class='tempo-wrapper'>
+          <label for='tempo'>Tempo</label>
+          <div class='range-knob-wrapper'>
+            <input id='tempo' max='200' min='60' type='range' value='120'>
+            <div class='range-knob'></div>
+          </div>
+        </div>
         <div class='drum' data-count='1' id='BD'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
-          <input class='knob1' max='4' min='0' type='range' value='2'>
-          <input class='knob2' max='4' min='0' type='range' value='2'>
+          <label for='vol1'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol1' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob11'>Tone</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob1' id='knob11' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob21'>Decay</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob2' id='knob21' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
           <h2>BassDrum</h2>
         </div>
         <div class='drum' data-count='1' id='SD'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
-          <input class='knob1' max='4' min='0' type='range' value='2'>
-          <input class='knob2' max='4' min='0' type='range' value='2'>
+          <label for='vol2'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol2' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob12'>Tone</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob1' id='knob12' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob22'>Snappy</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob2' id='knob22' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
           <h2>SnareDrum</h2>
         </div>
         <div class='drum' data-count='2' id='LC_LT'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
-          <input class='knob1' max='4' min='0' type='range' value='2'>
+          <label for='vol3'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol3' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob13'>Tuning</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob1' id='knob13' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
           <h2>LowConga</h2>
-          <button class='drum-toggle'>Toggle Drum</button>
+          <button class='drum-toggle'></button>
           <h2>LowTom</h2>
         </div>
         <div class='drum' data-count='2' id='MC_MT'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
-          <input class='knob1' max='4' min='0' type='range' value='2'>
+          <label for='vol4'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol4' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob14'>Tuning</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob1' id='knob14' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
           <h2>MidConga</h2>
-          <button class='drum-toggle'>Toggle Drum</button>
+          <button class='drum-toggle'></button>
           <h2>MidTom</h2>
         </div>
         <div class='drum' data-count='2' id='HC_HT'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
-          <input class='knob1' max='4' min='0' type='range' value='2'>
+          <label for='vol5'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol5' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob15'>Tuning</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob1' id='knob15' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
           <h2>HiConga</h2>
-          <button class='drum-toggle'>Toggle Drum</button>
+          <button class='drum-toggle'></button>
           <h2>HiTom</h2>
         </div>
         <div class='drum' data-count='2' id='CL_RS'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
+          <label for='vol6'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol6' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
           <h2>CLaves</h2>
-          <button class='drum-toggle'>Toggle Drum</button>
+          <button class='drum-toggle'></button>
           <h2>RimShot</h2>
         </div>
         <div class='drum' data-count='2' id='MA_CP'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
+          <label for='vol7'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol7' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
           <h2>MAracas</h2>
-          <button class='drum-toggle'>Toggle Drum</button>
+          <button class='drum-toggle'></button>
           <h2>ClaP</h2>
         </div>
         <div class='drum' data-count='1' id='CB'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
+          <label for='vol8'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol8' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
           <h2>CowBell</h2>
         </div>
         <div class='drum' data-count='1' id='CY'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
-          <input class='knob1' max='4' min='0' type='range' value='2'>
-          <input class='knob2' max='4' min='0' type='range' value='2'>
+          <label for='vol9'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol9' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob19'>Tone</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob1' id='knob19' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob29'>Decay</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob2' id='knob29' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
           <h2>CYmbal</h2>
         </div>
         <div class='drum' data-count='1' id='OH'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
-          <input class='knob1' max='4' min='0' type='range' value='2'>
+          <label for='vol10'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol10' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
+          <label for='knob110'>Decay</label>
+          <div class='range-knob-wrapper'>
+            <input class='knob1' id='knob110' max='4' min='0' type='range' value='2'>
+            <div class='range-knob'></div>
+          </div>
           <h2>OpenHihat</h2>
         </div>
         <div class='drum' data-count='1' id='CH'>
-          <input class='vol' max='10' min='0' type='range' value='8'>
+          <label for='vol11'>Level</label>
+          <div class='range-knob-wrapper'>
+            <input class='vol' id='vol11' max='10' min='0' type='range' value='8'>
+            <div class='range-knob'></div>
+          </div>
           <h2>Cls'dHihat</h2>
         </div>
-        <button id='play'>
-          <span>Start</span>
-          <span>Stop</span>
-        </button>
-        <div id='sequencer'>
-          <button data-pos='1'>&#9679;</button>
-          <button data-pos='2'>&#9679;</button>
-          <button data-pos='3'>&#9679;</button>
-          <button data-pos='4'>&#9679;</button>
-          <button data-pos='5'>&#9679;</button>
-          <button data-pos='6'>&#9679;</button>
-          <button data-pos='7'>&#9679;</button>
-          <button data-pos='8'>&#9679;</button>
-          <button data-pos='9'>&#9679;</button>
-          <button data-pos='10'>&#9679;</button>
-          <button data-pos='11'>&#9679;</button>
-          <button data-pos='12'>&#9679;</button>
-          <button data-pos='13'>&#9679;</button>
-          <button data-pos='14'>&#9679;</button>
-          <button data-pos='15'>&#9679;</button>
-          <button data-pos='16'>&#9679;</button>
-        </div>
+      </div>
+      <div id='name'>
+        <h1>
+          Rhythm Composer
+          <span>JS808</span>
+        </h1>
+        <h2>Computer Controlled</h2>
+      </div>
+      <button id='play'>
+        <span>Start</span>
+        <span>Stop</span>
+      </button>
+      <div id='sequencer'>
+        <button data-pos='1'>&#9679;</button>
+        <button data-pos='2'>&#9679;</button>
+        <button data-pos='3'>&#9679;</button>
+        <button data-pos='4'>&#9679;</button>
+        <button data-pos='5'>&#9679;</button>
+        <button data-pos='6'>&#9679;</button>
+        <button data-pos='7'>&#9679;</button>
+        <button data-pos='8'>&#9679;</button>
+        <button data-pos='9'>&#9679;</button>
+        <button data-pos='10'>&#9679;</button>
+        <button data-pos='11'>&#9679;</button>
+        <button data-pos='12'>&#9679;</button>
+        <button data-pos='13'>&#9679;</button>
+        <button data-pos='14'>&#9679;</button>
+        <button data-pos='15'>&#9679;</button>
+        <button data-pos='16'>&#9679;</button>
       </div>
     </div>
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
