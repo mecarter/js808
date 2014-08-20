@@ -17,75 +17,95 @@ label {
   font-size: 11px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #ccc;
+  color: #b4b4b4;
+  text-shadow: 0 0 1px #111111;
 }
 
-/* line 24, ../sass/js808.scss */
+/* line 25, ../sass/js808.scss */
 #drum-machine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   width: 1142px;
-  background: #333;
   color: white;
-  margin: 0 auto;
   padding: 18px 30px;
-  border-left: 30px solid #111;
-  border-right: 30px solid #111;
+  border-left: 30px solid #202020;
+  border-right: 30px solid #202020;
   overflow: hidden;
   *zoom: 1;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background-image: -webkit-gradient(radial, 0% 0%, 0, 0% 0%, 100, color-stop(0%, #4a4951), color-stop(69%, #393439), color-stop(100%, #222122));
+  background-image: -webkit-radial-gradient(top left, ellipse cover, #4a4951 0%, #393439 69%, #222122 100%);
+  background-image: -moz-radial-gradient(top left, ellipse cover, #4a4951 0%, #393439 69%, #222122 100%);
+  background-image: -o-radial-gradient(top left, ellipse cover, #4a4951 0%, #393439 69%, #222122 100%);
+  background-image: radial-gradient(top left, ellipse cover, #4a4951 0%, #393439 69%, #222122 100%);
+  -webkit-box-shadow: inset 0 0 4px -2px #040404, inset 0 6px 4px -2px #cacaca, 0 30px 0 #222122;
+  -moz-box-shadow: inset 0 0 4px -2px #040404, inset 0 6px 4px -2px #cacaca, 0 30px 0 #222122;
+  box-shadow: inset 0 0 4px -2px #040404, inset 0 6px 4px -2px #cacaca, 0 30px 0 #222122;
 }
 
-/* line 36, ../sass/js808.scss */
+/* line 42, ../sass/js808.scss */
 #drums {
   overflow: hidden;
   *zoom: 1;
   margin-bottom: 20px;
 }
 
-/* line 42, ../sass/js808.scss */
+/* line 48, ../sass/js808.scss */
 .tempo-wrapper,
 .drum {
   float: left;
   width: 80px;
   height: 300px;
-  border-right: 2px solid #888;
+  border-right: 2px solid #636363;
 }
 
-/* line 49, ../sass/js808.scss */
+/* line 55, ../sass/js808.scss */
 .tempo-wrapper {
   width: 120px;
 }
-/* line 54, ../sass/js808.scss */
+/* line 60, ../sass/js808.scss */
 .tempo-wrapper .range-knob-wrapper,
 .tempo-wrapper .range-knob-wrapper input[type="range"] {
   width: 100px;
   height: 100px;
 }
-/* line 59, ../sass/js808.scss */
+/* line 65, ../sass/js808.scss */
 .tempo-wrapper .range-knob-wrapper .range-knob {
   width: 80px;
   height: 80px;
   top: 12px;
   left: 12px;
 }
-/* line 65, ../sass/js808.scss */
+/* line 71, ../sass/js808.scss */
 .tempo-wrapper .range-knob-wrapper .range-knob:after {
   height: 21px;
   left: 34px;
 }
 
-/* line 73, ../sass/js808.scss */
+/* line 79, ../sass/js808.scss */
 .drum {
   position: relative;
 }
-/* line 76, ../sass/js808.scss */
+/* line 82, ../sass/js808.scss */
 .drum h2 {
-  font-size: 16px;
+  font-size: 15px;
   font-variant: small-caps;
   font-weight: normal;
   text-align: center;
-  background: lightyellow;
+  background: #fcfadc;
   color: #111;
   margin: 13px 2px 12px;
   -webkit-border-radius: 3px;
@@ -93,16 +113,19 @@ label {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 5px white;
+  -moz-box-shadow: inset 0 0 5px white;
+  box-shadow: inset 0 0 5px white;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 87, ../sass/js808.scss */
+/* line 94, ../sass/js808.scss */
 .drum h2 span {
   font-size: 12px;
   font-weight: bold;
 }
-/* line 93, ../sass/js808.scss */
+/* line 100, ../sass/js808.scss */
 .drum .drum-toggle {
   position: relative;
   display: block;
@@ -116,8 +139,11 @@ label {
   -ms-border-radius: 0;
   -o-border-radius: 0;
   border-radius: 0;
+  -webkit-box-shadow: 1px 1px 0 #3c3c3c;
+  -moz-box-shadow: 1px 1px 0 #3c3c3c;
+  box-shadow: 1px 1px 0 #3c3c3c;
 }
-/* line 103, ../sass/js808.scss */
+/* line 111, ../sass/js808.scss */
 .drum .drum-toggle:after {
   content: '';
   display: block;
@@ -126,39 +152,69 @@ label {
   left: 1px;
   width: 10px;
   height: 12px;
-  background: #555;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQIW2O0sbH5z4AEGDEEfHx8UFWgCwAAFRsHMbouKDMAAAAASUVORK5CYII=) repeat;
+  -webkit-box-shadow: 0 5px 0 0 #2c2c2c;
+  -moz-box-shadow: 0 5px 0 0 #2c2c2c;
+  box-shadow: 0 5px 0 0 #2c2c2c;
 }
-/* line 116, ../sass/js808.scss */
+/* line 125, ../sass/js808.scss */
 .drum.use-alt .drum-toggle:after {
   top: 7px;
+  -webkit-box-shadow: 0 3px 0 0 #2c2c2c;
+  -moz-box-shadow: 0 3px 0 0 #2c2c2c;
+  box-shadow: 0 3px 0 0 #2c2c2c;
 }
-/* line 121, ../sass/js808.scss */
+/* line 131, ../sass/js808.scss */
 .drum:last-child {
   border-right: none;
 }
-/* line 125, ../sass/js808.scss */
+/* line 135, ../sass/js808.scss */
 .drum.active {
-  background: #444;
+  background: rgba(127, 127, 127, 0.2);
 }
 
-/* line 131, ../sass/js808.scss */
+/* line 140, ../sass/js808.scss */
+#name {
+  overflow: hidden;
+  *zoom: 1;
+  text-align: right;
+  padding: 12px 0 30px;
+}
+/* line 146, ../sass/js808.scss */
+#name h1,
+#name h2 {
+  margin: 0;
+}
+/* line 150, ../sass/js808.scss */
 #name h1 {
-  width: 800px;
-  color: #cc8400;
-  border-bottom: 3px solid #cc8400;
+  float: right;
+  width: 900px;
+  color: #fb802e;
+  border-bottom: 3px solid #fb802e;
   font-family: 'Hammersmith One';
   font-size: 36px;
   font-weight: normal;
-  text-align: right;
   line-height: 30px;
+  text-shadow: 1px 1px #191919;
+  -webkit-box-shadow: 0 1px #2c2c2c;
+  -moz-box-shadow: 0 1px #2c2c2c;
+  box-shadow: 0 1px #2c2c2c;
 }
-/* line 141, ../sass/js808.scss */
+/* line 162, ../sass/js808.scss */
 #name h1 span {
   font-size: 24px;
-  margin: 0 60px 0 20px;
+  margin: 0 80px 0 20px;
+}
+/* line 168, ../sass/js808.scss */
+#name h2 {
+  clear: both;
+  float: right;
+  margin-top: 4px;
+  margin-right: 80px;
+  color: #acacac;
 }
 
-/* line 148, ../sass/js808.scss */
+/* line 177, ../sass/js808.scss */
 #play {
   clear: both;
   float: left;
@@ -168,16 +224,16 @@ label {
   margin-right: 20px;
   cursor: pointer;
 }
-/* line 157, ../sass/js808.scss */
+/* line 186, ../sass/js808.scss */
 #play span {
   display: block;
   text-transform: uppercase;
 }
-/* line 161, ../sass/js808.scss */
+/* line 190, ../sass/js808.scss */
 #play span:first-child {
   border-bottom: 1px solid #666;
 }
-/* line 166, ../sass/js808.scss */
+/* line 195, ../sass/js808.scss */
 #play.playing {
   background: white;
   border: 5px solid #fafa99;
@@ -186,47 +242,64 @@ label {
   box-shadow: 0 0 10px lightyellow;
 }
 
-/* line 174, ../sass/js808.scss */
+/* line 203, ../sass/js808.scss */
 #sequencer button {
   display: inline-block;
   border: none;
-  background: red;
+  background: #fe5438;
   color: black;
-  width: 50px;
+  width: 33px;
+  padding-right: 7px;
   height: 80px;
   font-size: 36px;
+  margin-right: 6px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #b61a01;
+  -moz-box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #b61a01;
+  box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #b61a01;
 }
-/* line 184, ../sass/js808.scss */
+/* line 217, ../sass/js808.scss */
 #sequencer button:nth-child(n+5) {
-  background: orange;
+  background: #fe9633;
+  -webkit-box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #b15701;
+  -moz-box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #b15701;
+  box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #b15701;
 }
-/* line 188, ../sass/js808.scss */
+/* line 222, ../sass/js808.scss */
 #sequencer button:nth-child(n+9) {
-  background: yellow;
+  background: #f7e56d;
+  -webkit-box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #d9be0c;
+  -moz-box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #d9be0c;
+  box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #d9be0c;
 }
-/* line 192, ../sass/js808.scss */
+/* line 227, ../sass/js808.scss */
 #sequencer button:nth-child(n+13) {
-  background: lightyellow;
+  background: #f7f2ed;
+  -webkit-box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #d0b295;
+  -moz-box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #d0b295;
+  box-shadow: 0 1px 0 3px #202020, inset -5px 0 0 #d0b295;
 }
-/* line 196, ../sass/js808.scss */
+/* line 232, ../sass/js808.scss */
 #sequencer button.active {
-  color: #f55;
-  text-shadow: 0 0 5px maroon;
+  color: #feb0c1;
+  text-shadow: 0 0 8px #fd4b71, -1px 1px 0 #fd4b71;
 }
 
-/* line 204, ../sass/js808.scss */
+/* line 240, ../sass/js808.scss */
 .range-knob-wrapper {
   position: relative;
   width: 50px;
   height: 50px;
   margin: 0 auto;
 }
-/* line 210, ../sass/js808.scss */
+/* line 246, ../sass/js808.scss */
 .range-knob-wrapper input[type="range"] {
   position: relative;
   z-index: 2;
@@ -240,7 +313,7 @@ label {
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
-/* line 219, ../sass/js808.scss */
+/* line 255, ../sass/js808.scss */
 .range-knob-wrapper .range-knob {
   position: absolute;
   z-index: 1;
@@ -255,6 +328,9 @@ label {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
+  -webkit-box-shadow: 0 0 8px #1c1c1c, 0 0 1px 1px #4c4c4c;
+  -moz-box-shadow: 0 0 8px #1c1c1c, 0 0 1px 1px #4c4c4c;
+  box-shadow: 0 0 8px #1c1c1c, 0 0 1px 1px #4c4c4c;
   -webkit-transition: 0.1s all;
   -moz-transition: 0.1s all;
   -o-transition: 0.1s all;
@@ -263,7 +339,7 @@ label {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 232, ../sass/js808.scss */
+/* line 269, ../sass/js808.scss */
 .range-knob-wrapper .range-knob:after {
   content: '';
   display: block;
@@ -274,7 +350,7 @@ label {
   left: 9px;
   background: #111;
 }
-/* line 244, ../sass/js808.scss */
+/* line 281, ../sass/js808.scss */
 .range-knob-wrapper .vol + .range-knob {
   background: orange;
 }

@@ -18,19 +18,25 @@ label {
   font-size: 11px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #ccc;
+  color: #b4b4b4;
+  @include text-shadow(0 0 1px #111);
 }
 
 #drum-machine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%, -50%));
   width: 1142px;
-  background: #333;
   color: white;
-  margin: 0 auto;
   padding: 18px 30px;
-  border-left: 30px solid #111;
-  border-right: 30px solid #111;
+  border-left: 30px solid #202020;
+  border-right: 30px solid #202020;
   @include clearfix;
   @include box-sizing(border-box);
+  @include border-radius(4px);
+  @include background-image(radial-gradient(top left, ellipse cover, #4a4951 0%,#393439 69%,#222122 100%));
+  @include box-shadow(inset 0 0 4px -2px #040404, inset 0 6px 4px -2px #cacaca, 0 30px 0 #222122);
 }
 
 #drums {
@@ -43,7 +49,7 @@ label {
   float: left;
   width: 80px;
   height: 300px;
-  border-right: 2px solid #888;
+  border-right: 2px solid #636363;
 }
 
 .tempo-wrapper {
@@ -74,14 +80,15 @@ label {
   position: relative;
   
   h2 {
-    font-size: 16px;
+    font-size: 15px;
     font-variant: small-caps;
     font-weight: normal;
     text-align: center;
-    background: lightyellow;
+    background: #fcfadc;
     color: #111;
     margin: 13px 2px 12px;
     @include border-radius(3px);
+    @include box-shadow(inset 0 0 5px #fff);
     @include box-sizing(border-box);
     
     span {
@@ -99,6 +106,7 @@ label {
     height: 25px;
     margin: 0 auto;
     @include border-radius(0);
+    @include box-shadow(1px 1px 0 #3c3c3c);
     
     &:after {
       content: '';
@@ -108,13 +116,15 @@ label {
       left: 1px;
       width: 10px;
       height: 12px;
-      background: #555;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQIW2O0sbH5z4AEGDEEfHx8UFWgCwAAFRsHMbouKDMAAAAASUVORK5CYII=) repeat;
+      @include box-shadow(0 5px 0 0 #2c2c2c);
     }
   }
   
   &.use-alt {
     .drum-toggle:after {
       top: 7px;
+      @include box-shadow(0 3px 0 0 #2c2c2c);
     }
   }
   
@@ -123,25 +133,44 @@ label {
   }
   
   &.active {
-    background: #444;
+    background: rgba(127,127,127,0.2);
   }
 }
 
 #name {
+  @include clearfix();
+  text-align: right;
+  padding: 12px 0 30px;
+  
+  h1,
+  h2 {
+    margin: 0;
+  }
+  
   h1 {
-    width: 800px;
-    color: darken(orange, 10%);
-    border-bottom: 3px solid darken(orange, 10%);
+    float: right;
+    width: 900px;
+    color: #fb802e;
+    border-bottom: 3px solid #fb802e;
     font-family: 'Hammersmith One';
     font-size: 36px;
     font-weight: normal;
-    text-align: right;
     line-height: 30px;
+    @include text-shadow(1px 1px #191919);
+    @include box-shadow(0 1px #2c2c2c);
     
     span {
       font-size: 24px;
-      margin: 0 60px 0 20px;
+      margin: 0 80px 0 20px;
     }
+  }
+  
+  h2 {
+    clear: both;
+    float: right;
+    margin-top: 4px;
+    margin-right: 80px;
+    color: #acacac;
   }
 }
 
@@ -174,28 +203,35 @@ label {
   button {
     display: inline-block;
     border: none;
-    background: red;
+    background: #fe5438;
     color: black;
-    width: 50px;
+    width: 33px;
+    padding-right: 7px;
     height: 80px;
     font-size: 36px;
+    margin-right: 6px;
     @include border-radius(4px);
+    @include box-sizing(content-box);
+    @include box-shadow(0 1px 0 3px #202020, inset -5px 0 0 darken(#fe5438, 25%));
     
     &:nth-child(n+5) {
-      background: orange;
+      background: #fe9633;
+      @include box-shadow(0 1px 0 3px #202020, inset -5px 0 0 darken(#fe9633, 25%));
     }
     
     &:nth-child(n+9) {
-      background: yellow;
+      background: #f7e56d;
+      @include box-shadow(0 1px 0 3px #202020, inset -5px 0 0 darken(#f7e56d, 25%));
     }
     
     &:nth-child(n+13) {
-      background: lightyellow;
+      background: #f7f2ed;
+      @include box-shadow(0 1px 0 3px #202020, inset -5px 0 0 darken(#f7f2ed, 25%));
     }
     
     &.active {
-      color: #f55;
-      text-shadow: 0 0 5px maroon;
+      color: lighten(#fd4b71, 20%);
+      text-shadow: 0 0 8px #fd4b71, -1px 1px 0 #fd4b71;
     }
   }
 }
@@ -226,6 +262,7 @@ label {
     background: #eee;
     border: 4px solid #111;
     @include border-radius(50%);
+    @include box-shadow(0 0 8px #1c1c1c, 0 0 1px 1px #4c4c4c);
     @include transition(0.1s all);
     @include box-sizing(border-box);
     
